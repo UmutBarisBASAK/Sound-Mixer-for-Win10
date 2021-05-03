@@ -1,4 +1,4 @@
-#include <Adafruit_GFX.h>
+ yo#include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
 #define OLED_RESET 4
@@ -185,6 +185,15 @@ void setup() {
   TCA9548A(3);
   display2.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
+   TCA9548A(2);
+  displayDiscord();
+  display1.display();
+  
+  // Set multiplexer to channel 2 and display temperature
+  TCA9548A(3);
+  displayGame();
+  display2.display();
+
   
   
   
@@ -193,17 +202,8 @@ void setup() {
 void loop() {
   updateSliderValues();
   sendSliderValues(); // Actually send data (all the time)
-  // printSliderValues(); // For debug
-    // Set multiplexer to channel 1 and display temperature
-  TCA9548A(2);
-  displayDiscord();
-  display1.display();
   
-  // Set multiplexer to channel 2 and display temperature
-  TCA9548A(3);
-  displayGame();
-  display2.display();
-  delay(10);
+
 }
 
 void updateSliderValues() {
